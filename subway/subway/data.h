@@ -33,6 +33,7 @@ public:
 	{
 		Station_id_t StationId;
 		MetroLine_id_t EdgeLineId;
+		EdgeAndStation_t(Station_id_t s, MetroLine_id_t m) : StationId(s), EdgeLineId(m) {}
 	};
 	typedef std::list<EdgeAndStation_t> Adjoins_t;
 	Adjoins_t adjoins;
@@ -46,3 +47,13 @@ typedef std::vector<MetroLine> MetroLineList_t;
 typedef std::vector<Station> StationList_t;
 extern MetroLineList_t MetroLineList;	//Global MetroLine table
 extern StationList_t StationList;	//Global Station table
+
+//functions from data.cpp
+MetroLine_id_t AddLineToMetroLineList(const string &name);
+Station_id_t AddStationToStationList(const string &name);
+MetroLine_id_t IdOfMetroLine(const string &name);
+Station_id_t IdOfStation(const string &name);
+
+//inline functions
+static inline MetroLine &GetMetroLine(MetroLine_id_t id) { return MetroLineList[id]; }
+static inline Station &GetStation(Station_id_t id) { return StationList[id]; }

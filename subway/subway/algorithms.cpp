@@ -13,9 +13,26 @@ void FillInAdjustMatrix()
 
 void StationQuery()
 {
-	string line;
-	while (cin >> line)
-		cout << "station query" << endl;
+	string linename;
+	while (cin >> linename) //for each time the user input a line name
+	{
+		MetroLine_id_t id = IdOfMetroLine(linename);
+		if (id >= MetroLineList.size())
+		{
+			cerr << "MetroLineName not founded. Please input again." << endl << endl;
+			continue;
+		}
+
+		//print all stations in this metro line
+		MetroLine &line = GetMetroLine(id);
+		for (MetroLine::Stations_t::iterator iter = line.Stations.begin();
+			iter != line.Stations.end();
+			++iter)
+		{
+			cout << GetStation(*iter).getName() << endl;
+		}
+		cout << endl;
+	}
 }
 
 void ShortestPath(const string &station1, const string &station2)

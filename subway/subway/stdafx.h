@@ -18,7 +18,7 @@
 #include <string>
 #include <vector>
 #include <list>
-#include <map>
+#include <algorithm>
 using std::cin;
 using std::cout;
 using std::cerr;
@@ -36,3 +36,4 @@ void StationQuery();
 void ShortestPath(const std::string &station1, const std::string &station2);
 void FewestTransferPath(const std::string &station1, const std::string &station2);
 void TSP(const string &station);
+

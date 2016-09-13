@@ -10,3 +10,25 @@ void FillInAdjustMatrix()
 {
 	//TODO
 }
+
+void StationQuery()
+{
+	string line;
+	while (cin >> line)
+		cout << "station query" << endl;
+}
+
+void ShortestPath(const string &station1, const string &station2)
+{
+	cout << "shortest path:" << station1 << station2 << endl;
+}
+
+void FewestTransferPath(const string &station1, const string &station2)
+{
+	cout << "fewest transfer path:" << station1 << station2 << endl;
+}
+
+void TSP(const string &station)
+{
+	cout << "TSP path:" << station << endl;
+}

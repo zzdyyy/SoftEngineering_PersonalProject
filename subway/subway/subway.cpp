@@ -19,12 +19,12 @@ int main(int argc, char** argv)
 		if (string(argv[1]) == string("-b"))
 		{
 			ReadDataFromFile();
-			ShortestPath(string(argv[2]), string(argv[3]));
+			ShortestPath(string(argv[2]), string(argv[3]), SHORTEST);
 		}
 		else if(string(argv[1]) == string("-c"))
 		{
 			ReadDataFromFile();
-			FewestTransferPath(string(argv[2]), string(argv[3]));
+			ShortestPath(string(argv[2]), string(argv[3]), FEWEST_TRANSFER);
 		}
 		else
 			usage();

@@ -33,7 +33,8 @@ void ReadDataFromFile();
 
 //functions from algorithms.cpp
 void StationQuery();
-void ShortestPath(const std::string &station1, const std::string &station2);
-void FewestTransferPath(const std::string &station1, const std::string &station2);
+#define SHORTEST 0
+#define FEWEST_TRANSFER 1
+void ShortestPath(const std::string &station1, const std::string &station2, int type);
 void TSP(const string &station);
 

@@ -8,7 +8,8 @@ using std::ifstream;
 //read data from the file and fill it in the MetroLineList and StationList
 void ReadDataFromFile()
 {
-	try {
+	try
+	{
 		//Open the input file
 		ifstream fin(SUBWAY_INFO_FILENAME);
 		if (!fin)
@@ -22,7 +23,7 @@ void ReadDataFromFile()
 				throw(string("Wrong format: MetroLine directive \"line\" and MetroLineName are needed."));
 
 #ifdef DEBUG
-			cerr << "ReadDataFromFile(): at " << linename << endl;
+			cerr << "DEBUG ReadDataFromFile(): at " << linename << endl;
 #endif
 
 			//now we got the name of metro line, let's add it into MetroLineList.
@@ -85,7 +86,8 @@ void ReadDataFromFile()
 
 		fin.close();
 	}
-	catch (string msg) {
+	catch (string msg)
+	{
 		cerr << "Read input file \"" SUBWAY_INFO_FILENAME "\" error:" << endl
 			<< msg << endl;
 		exit(EXIT_FAILURE);

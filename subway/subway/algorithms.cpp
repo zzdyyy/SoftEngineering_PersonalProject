@@ -6,7 +6,7 @@
 bool *AdjustMatrix = nullptr;
 size_t StationNum = 0;	//the width and height of AdjustMatrix
 						//a inline function to access AdjustMatrix as an 2-d array
-static inline bool &ajm(size_t i, size_t j) { return *(AdjustMatrix + i * StationNum + j); }
+static inline bool &ajm(size_t i, size_t j) { return *(AdjustMatrix + (i * StationNum + j)); }
 
 void FillInAdjustMatrix()
 {
@@ -37,7 +37,7 @@ void do_FillInAdjustMatix_FT(Station_id_t start, Station_id_t dest)
 	//first compute the least transfer lines
 	std::vector<MetroLine_id_t> lines, adding;
 	bool flag = false; //found flag
-	
+
 	//add lines
 	for (MetroLine_id_t line : GetStation(start).MetroLines)
 	{
@@ -76,17 +76,15 @@ void do_FillInAdjustMatix_FT(Station_id_t start, Station_id_t dest)
 						newline) > 0)	//dest is on adding line
 					{
 						flag = true;
-						lines.push_back(line);
+						lines.push_back(newline);
 					}
 				}
 			}
 		}
 	}
 
+	std::vector<bool> station_allow(StationList.size(), false);	//whether a station is on lines
 
-	bool *station_allow = new bool[StationNum];	//whether a station is on lines
-	for (size_t i = 0; i < StationNum; ++i)
-		station_allow[i] = false;
 	for (MetroLine_id_t line : lines)
 		for (Station_id_t station : GetMetroLine(line).Stations)
 			station_allow[station] = true;
@@ -94,15 +92,14 @@ void do_FillInAdjustMatix_FT(Station_id_t start, Station_id_t dest)
 	//Now the stations are confirmed, fill in the matrix
 	FillInAdjustMatrix();
 	//clear the stations not on lines
-	/*for (Station_id_t sid = 0; sid < StationNum; ++sid)
+	for (Station_id_t sid = 0; sid < StationNum; ++sid)
 	{
 		if (!station_allow[sid])
 			for (Station_id_t i = 0; i < StationNum; ++i)
 				ajm(sid, i) = false, ajm(i, sid) = false;
 	}
-	*/
-	delete[] station_allow;
-	station_allow = nullptr;
+	
+
 }
 
 //a type to store the path information
